@@ -1,0 +1,14 @@
+from sqlalchemy import text
+
+from app.infrastructure.database.session import engine
+
+
+try:
+    with engine.connect() as connection:
+        result = connection.execute(text("SELECT 1"))
+        print("Database connected successfully!")
+        print("Result:", result.scalar())
+
+except Exception as e:
+    print("Database connection failed!")
+    print(e)
